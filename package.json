@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "wdio wdio.conf.js",
-    "generateReport": "allure generate allure-results --clean && allure open"
+    "test:browserstack": "wdio wdio.conf.js",
+    "test:local": "wdio wdio.local-conf.js"
   },
   "author": "",
   "license": "ISC",

@@ -2,17 +2,6 @@ const allure = require('allure-commandline');
 
 exports.config = {
 
-    user: 'shishirkanthi_0pNsSq',
-    key: 'WDP9zLPXn9sxEwanbBcr',
-    updateJob: false,
-    host: 'hub.browserstack.com',
-
-    commonCapabilities:{
-        "project" : "Marketing Website v2",
-        "build" : "alpha_0.1.7",
-        "name" : "Home page must have a title"
-      },
-
     onComplete: function() {
         const reportError = new Error('Could not generate Allure report')
         const generation = allure(['generate', 'allure-results', '--clean'])
@@ -108,15 +97,9 @@ exports.config = {
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
         // excludeDriverLogs: ['bugreport', 'server'],
         // }
-        // {
-        //     browserName: 'firefox'        
-        // }
         {
-            'browser': 'chrome',
-            'browser_version': 'latest',
-            'os': 'Windows',
-            'os_version': '10'
-          }
+            browserName: 'chrome'
+        }        
     ],
     //
     // ===================

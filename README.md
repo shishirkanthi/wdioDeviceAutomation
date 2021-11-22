@@ -4,3 +4,4 @@ Cross browser: Switching browser or running with additional browser, need to add
 Screenshot capture: 
     Set the disableWebdriverScreenshotsReporting: false on the reporters section of wdio.conf.js
     prefix await to browser.takeScreenshot() as it is a async function
+Generate report: Added wdio's onComplete hook on the wdio.conf.js to generate allure report
