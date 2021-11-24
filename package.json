@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:browserstack": "wdio wdio.conf.js",
+    "test:browserstack": "wdio wdio.browserStack-conf.js",
     "test:local": "wdio wdio.local-conf.js"
   },
   "author": "",
