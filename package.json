@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test:browserstack": "wdio wdio.browserStack-conf.js",
-    "test:local": "wdio wdio.local-conf.js"
+    "test:local": "wdio wdio.local-conf.js",
+    "test:android:local": "wdio wdio.android-conf.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,5 +22,9 @@
     "allure-commandline": "^2.13.8",
     "chromedriver": "^96.0.0",
     "wdio-chromedriver-service": "^7.2.2"
+  },
+  "dependencies": {
+    "@wdio/appium-service": "^7.16.6",
+    "appium": "^1.22.1"
   }
 }

@@ -20,18 +20,17 @@ exports.config = {
 
                 console.log('Allure report successfully generated')
                 resolve()
-            }).then(
-                open.on('exit',function(exitCode) {
-                    clearTimeout(generationTimeout)
-    
-                    if (exitCode !== 0) {
-                        return reject(reportError)
-                    }
-    
-                    console.log('Allure report successfully generated')
-                    resolve()
-                })
-            )
+            });
+            open.on('exit',function(exitCode) {
+                clearTimeout(generationTimeout)
+
+                if (exitCode !== 0) {
+                    return reject(reportError)
+                }
+
+                console.log('Allure report successfully generated')
+                resolve()
+            })            
         })
     },
     //
@@ -78,7 +77,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: 1,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -101,10 +100,11 @@ exports.config = {
         //     browserName: 'firefox'        
         // }
         {
-            'browser': 'chrome',
-            'browser_version': 'latest',
-            'os': 'Windows',
-            'os_version': '10'
+            "platformName": "Android",
+            "appium:automationName": "UiAutomator2",
+            "appium:udid": "emulator-5554",
+            "appium:appPackage": "com.wdiodemoapp",
+            "appium:appActivity": ".MainActivity"
           }
     ],
     //
@@ -141,7 +141,7 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 30000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
@@ -155,11 +155,13 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     port: 4723, // default appium port
-    services: ['appium', {
+    path: '/wd/hub',
+    host: 'localhost',
+    services: [['appium', {
         logPath : './'
         // Appium service options here
         // ...
-    }],
+    }]],
 
     
     // Framework you want to run your specs with.
@@ -214,7 +216,7 @@ exports.config = {
         // <boolean> fail if there are any undefined or pending steps
         strict: false,
         // <string> (expression) only execute the features or scenarios with tags matching the expression
-        tagExpression: '',
+        tagExpression: '@android',
         // <number> timeout for step definitions
         timeout: 60000,
         // <boolean> Enable this config to treat undefined definitions as warnings.

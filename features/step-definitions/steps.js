@@ -2,6 +2,7 @@ import { Given, When, Then } from '@wdio/cucumber-framework';
 
 import LoginPage from '../pageobjects/login.page';
 import SecurePage from '../pageobjects/secure.page';
+import wdioAppHomePage from '../pageobjects/wdioAppHome.page';
 
 const pages = {
     login: LoginPage
@@ -19,4 +20,13 @@ Then(/^I should see a flash message saying (.*)$/, async (message) => {
     await expect(SecurePage.flashAlert).toBeExisting();
     await expect(SecurePage.flashAlert).toHaveTextContaining(message);
 });
+
+Given(/^application is launched$/, async() => {
+    await wdioAppHomePage.login("test@xyz.com", "abc123");
+});
+
+Then(/^validate error message (.*) is displayed$/, async expectedMsg => {
+    const errorMsg = await wdioAppHomePage.getErrorMessage();
+    await expect(errorMsg).toEqual(expectedMsg);    
+})
 
